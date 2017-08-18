@@ -68,7 +68,7 @@ class SpotifyPlayer {
       };
       this.fetchUser().then(user => {
         this.dispatch('login', user);
-        this.loopInterval = setInterval(loop.bind(this), 1000);
+        this.loopInterval = setInterval(loop.bind(this), 2000);
         loop();
       });
     }

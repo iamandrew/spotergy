@@ -5,7 +5,8 @@
 <html>
 <head>
 	<title>Spotergy</title>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="app.css">
 </head>
@@ -50,11 +51,11 @@
 				<div class="now-playing__side">
 					<div class="now-playing__name">${data.item.name}</div>
 					<div class="now-playing__artist">${data.item.artists[0].name}</div>
-					<div class="now-playing__addedby">Added by: ${data.addedby}</div>
-					<div class="now-playing__time">${current} / ${total}</div>
+					<div class="now-playing__addedby"><div class="who">Who's to blame:</div> ${data.addedby}</div>
 					<div class="progress">
 						<div class="progress-bar" style="width:${data.progress_ms * 100 / data.item.duration_ms}%"></div>
 					</div>
+                    <div class="now-playing__time">${current} / ${total}</div>
 				</div>
 			</div>
 			<div class="background" style="background-image:url(${data.item.album.images[0].url})"></div>
