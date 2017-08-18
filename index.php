@@ -83,7 +83,7 @@
 			 						currentlyPlaying = songid;
 			 						var url = 'https://hooks.slack.com/services/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';
 			 						var jsonstring = JSON.stringify({
-			 						        "channel": "#testingprivate",
+			 						        "channel": "#fridayradio",
 			 								"mrkdwn": true,
 			 								"icon_emoji": ":notes:",
 			 								"username": 'Friday Radio',
