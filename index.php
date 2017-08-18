@@ -13,12 +13,16 @@
     <div class="text-center mt-5">
     	<h1>Synergy Studio Radio</h1>
     </div>
+    <div class="slackcheck">
+    	Post to slack? <input type="checkbox" class="slackcheckbox" name="slackcheck" value="0" />
+    </div>
 	<div class="container">
 		<div class="login-container hidden" id="js-login-container">
 	    	<button class="btn btn-outline-success" id="js-btn-login">Login with Spotify</button>
 	    </div>
 	    <div class="main-container hidden" id="js-main-container"></div>
 	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="spotify-player.js"></script>
 	<script>
 		var mainContainer = document.getElementById('js-main-container'),
@@ -27,6 +31,7 @@
 		    background = document.getElementById('js-background');
 
 		var spotifyPlayer = new SpotifyPlayer();
+		var currentlyPlaying = null;
 
 		function millisToMinutesAndSeconds(millis) {
 			var minutes = Math.floor(millis / 60000);
@@ -72,6 +77,32 @@
 							}
 							response.addedby = user;
 		 					mainContainer.innerHTML = template(response);
+
+		 					if ($('input.slackcheckbox').is(':checked')) {
+			 					if (songid != currentlyPlaying) {
+			 						currentlyPlaying = songid;
+			 						var url = 'https://hooks.slack.com/services/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';
+			 						var jsonstring = JSON.stringify({
+			 						        "channel": "#testingprivate",
+			 								"mrkdwn": true,
+			 								"icon_emoji": ":notes:",
+			 								"username": 'Friday Radio',
+			 								"attachments": [{
+			 									"pretext": 'Now Playing :radio:',
+			 									"text": response.item.name + ' - ' + response.item.artists[0].name,
+			 									"fields": [{'value': 'Added by: '+user}]
+			 								}]
+			 						    });
+			 						$.ajax({
+			 						    data: 'payload=' + jsonstring,
+			 						    dataType: 'json',
+			 						    processData: false,
+			 						    type: 'POST',
+			 						    url: url
+			 						});
+			 					}
+			 				}
+
 						});
 
 					}

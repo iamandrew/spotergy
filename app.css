@@ -21,6 +21,15 @@ h1 {
     z-index: 10;
 }
 
+.slackcheck {
+	position: fixed;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	z-index: 15;
+	font-size: 13px;
+}
+
 /** Buttons **/
 .btn {
     background-color: transparent;

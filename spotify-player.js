@@ -63,14 +63,12 @@ class SpotifyPlayer {
               }
             })
             .catch(e => {
-              console.log('Logging user out due to error', e);
-              this.logout();
             });
         }
       };
       this.fetchUser().then(user => {
         this.dispatch('login', user);
-        this.loopInterval = setInterval(loop.bind(this), 500);
+        this.loopInterval = setInterval(loop.bind(this), 1000);
         loop();
       });
     }
